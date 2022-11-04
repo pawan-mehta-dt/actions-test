@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: update-release-notes
 
 # Controls when the workflow will run
 on:
@@ -19,3 +19,5 @@ jobs:
     steps:
     - run: |
         echo "PR ${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }}) has been merged"
+        echo "PR ${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})" >> beta-releasenotes.md
+        cat beta-releasenotes.md
