@@ -18,4 +18,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo -n "PR ${{ github.event.pull_request.title }} \(#${{ github.event.pull_request.number }}\) has been merged"
+        echo -n "PR ${{ github.event.pull_request.title }} \(\#${{ github.event.pull_request.number }}\) has been merged"
