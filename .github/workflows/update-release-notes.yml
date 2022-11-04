@@ -18,7 +18,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo PR #${{ github.event.number }} has been merged
-        echo PR ${{ github.event.title }} has been merged
-        echo PR ${{ github.event.pull_request.title }} has been merged
-        echo PR ${{ github.event.pull_request.pull_request.title }} has been merged
+        echo PR ${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }}) has been merged
