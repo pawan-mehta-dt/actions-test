@@ -30,6 +30,7 @@ jobs:
     - name: Change Target Branch
       run: |
         # Set the new target branch name
+        git fetch --all
         git checkout release-candidate
         git pull origin main
         git config --global user.email pawan.mehta@devtron.ai
