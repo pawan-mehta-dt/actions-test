@@ -24,7 +24,7 @@ jobs:
         EOF
         sed ':a;N;$!ba;s/\n/\\n/g' -i release-note.txt
         content=$(cat release-note.txt)
-        curl -H "Content-Type: application/json" -d "{\"username\": \"Release-note\", \"content\": \"${content}\"}' $DISCORD_WEBHOOK_URL
+        curl -H "Content-Type: application/json" -d "{\"username\": \"Release-note\", \"content\": \"${content}\"}" $DISCORD_WEBHOOK_URL
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         
