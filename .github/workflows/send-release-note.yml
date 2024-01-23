@@ -24,7 +24,7 @@ jobs:
         echo $PR_BODY > release-note.txt
         echo "## Release Note Goes below"
         cat release-note.txt
-        sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/\\n/g' -i release-note.txt
+        printf '%s\n' '%s/$/\\n/' '%j' 'w' | ed -s release-note.txt
         echo "## Release note after substitution"
         cat release-note.txt
         echo "Content in echo command"
