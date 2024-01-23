@@ -19,7 +19,6 @@ jobs:
     steps:
     - shell: bash
       run: |
-        set -x
         echo "PR ${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }}) has been merged"
         echo $PR_BODY > release-note.txt
         echo "## Release Note Goes below"
