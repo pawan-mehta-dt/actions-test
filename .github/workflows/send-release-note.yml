@@ -20,7 +20,7 @@ jobs:
     - shell: bash
       run: |
         echo "PR ${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }}) has been merged"
-        echo ${{ github.event.pull_request.body }} > release-note.txt
+        echo $PR_BODY > release-note.txt
         echo "## Release Note Goes below"
         cat release-note.txt
         sed ':a;N;$!ba;s/\n/\\n/g' -i release-note.txt
@@ -30,4 +30,5 @@ jobs:
         curl -H "Content-Type: application/json" -d "{\"username\": \"Release-note\", \"content\": \"${content}\"}" $DISCORD_WEBHOOK_URL
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        PR_BODY: ${{ github.event.pull_request.body }}
         
