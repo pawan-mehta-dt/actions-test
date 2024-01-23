@@ -23,8 +23,12 @@ jobs:
         cat << EOF > release-note.txt
         ${{ github.event.pull_request.body }}
         EOF
+        echo "## Release Note Goes below"
+        cat release-note.txt
         sed ':a;N;$!ba;s/\n/\\n/g' -i release-note.txt
+        echo "## Release note after substitution"
         content=$(cat release-note.txt)
+        echo $content
         curl -H "Content-Type: application/json" -d "{\"username\": \"Release-note\", \"content\": \"${content}\"}" $DISCORD_WEBHOOK_URL
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
