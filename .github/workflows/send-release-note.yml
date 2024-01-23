@@ -19,7 +19,9 @@ jobs:
     steps:
     - run: |
         echo "PR ${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }}) has been merged"
-        echo "${{ github.event.pull_request.body }}" > release-note.txt
+        cat << EOF > release-note.txt
+        ${{ github.event.pull_request.body }}
+        EOF
         sed -i ':a;N;$!ba;s/\n/ \\\n/g' release-note.txt
         curl -H "Content-Type: application/json" -d "{\"username\": \"Release-note\", \"content\": \"$(cat release-note.txt)\"}' $DISCORD_WEBHOOK_URL
       env:
