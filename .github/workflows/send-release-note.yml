@@ -21,7 +21,7 @@ jobs:
       run: |
         echo "PR ${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }}) has been merged"
         cat << EOF > release-note.txt
-        ${{ github.event.pull_request.body }}
+        echo ${{ github.event.pull_request.body }}
         EOF
         echo "## Release Note Goes below"
         cat release-note.txt
