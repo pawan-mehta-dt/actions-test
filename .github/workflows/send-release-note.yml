@@ -17,17 +17,9 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-    - shell: bash
-      run: |
-        echo "PR ${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }}) has been merged"
-        cat << EOF > release-note.json
-        {"username":"Release-note","content":"${PR_BODY}"}
-        EOF
-        echo "## Release Note Goes below"
-        cat release-note.json
-        sed ':a;N;$!ba;s/\n/\\n/g' -i release-note.json
-        curl -H "Content-Type: application/json" -d@release-note.json $DISCORD_WEBHOOK_URL
-      env:
-        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        PR_BODY: ${{ github.event.pull_request.body }}
+    - uses: tsickert/discord-webhook@v5.3.0
+      with:
+        username: Release-note
+        content: ${{ github.event.pull_request.body }}
+        webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
         
