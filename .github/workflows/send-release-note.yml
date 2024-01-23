@@ -1,4 +1,4 @@
-name: update-release-notes
+name: send-release-note
 
 # Controls when the workflow will run
 on:
@@ -19,7 +19,7 @@ jobs:
     steps:
     - run: |
         echo "PR ${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }}) has been merged"
-        curl -H "Content-Type: application/json" -d '{"username": "test", "content": "${{ github.event.pull_request.body }}"}' $DISCORD_WEBHOOK_URL
+        curl -H "Content-Type: application/json" -d '{"username": "Release-note", "content": "${{ github.event.pull_request.body }}"}' $DISCORD_WEBHOOK_URL
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         
