@@ -25,7 +25,7 @@ jobs:
         EOF
         echo "## Release Note Goes below"
         cat release-note.json
-        sed ':a;N;$!ba;s/\n/\\\\n/g' -i release-note.json
+        sed ':a;N;$!ba;s/\n/\\n/g' -i release-note.json
         curl -H "Content-Type: application/json" -d@release-note.json $DISCORD_WEBHOOK_URL
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
